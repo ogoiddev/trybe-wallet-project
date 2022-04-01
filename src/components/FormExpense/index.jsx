@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import * as S from '../globalStyled';
+import * as S from '../../components_Styled/FormElements';
 
 export default class FormExpense extends Component {
   render() {

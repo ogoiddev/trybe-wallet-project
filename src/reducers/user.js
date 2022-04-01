@@ -2,15 +2,15 @@
 import { SAVE_LOGIN } from '../actions';
 
 const INITIAL_STATE = {
-  user: {
-    email: '',
-  },
+  email: '',
 };
 
-export default userReducer = (state = INITIAL_STATE, action) => {
+const user = (state = INITIAL_STATE, action) => {
   switch (action.type) {
   case SAVE_LOGIN:
-    return { ...state, user: { email: action.payload.email } };
+    return { email: action.payload };
   default: return state;
   }
 };
+
+export default user;
