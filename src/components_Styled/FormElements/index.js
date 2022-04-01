@@ -19,6 +19,14 @@ export const Input = styled.input`
   }
 `;
 
+export const TextArea = styled.textarea`
+  border: 0.5px solid red;
+`;
+
+export const Select = styled.select`
+  border: 0.5px solid blue;
+`;
+
 export const Button = styled.button`
   border: none;
   background-color: ${({ disabled }) => (disabled ? 'red' : 'black')};
