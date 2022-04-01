@@ -4,9 +4,9 @@ import * as S from '../../components_Styled/FormElements';
 export default class FormExpense extends Component {
   render() {
     return (
-      <S.FormExpense>
+      <S.Form>
         <S.Input type="text" placeholder="R$" />
-      </S.FormExpense>
+      </S.Form>
     );
   }
 }

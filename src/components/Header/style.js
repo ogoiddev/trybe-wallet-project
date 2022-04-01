@@ -1,7 +1,9 @@
-const Header = styled.div`
+import styled from 'styled-components';
+
+const HeaderContainer = styled.div`
   width: 100%;
-  heigth: 200px;
+  height: 200px;
   background-color: #0fa;
 `;
 
-export default { Header };
+export default HeaderContainer;
