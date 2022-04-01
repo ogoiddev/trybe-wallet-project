@@ -10,17 +10,22 @@ export const actionSaveLogin = (payload) => ({
   payload,
 });
 
-export const actionSaveCurrency = (payload) => ({
+const actionSaveCurrency = (payload) => ({
   type: SAVE_CURRENCY,
   payload,
 });
 
-export const actionSaveExpense = (payload) => ({
+const actionSaveExpense = (payload) => ({
   type: SAVE_EXPENSE,
   payload,
 });
 
-export const actionFetchToSaveCurrencys = () => async (dispatch) => {
+export const actionFetchToSaveCurrencies = () => async (dispatch) => {
   const currencys = await fetchCurrencies();
   dispatch(actionSaveCurrency(currencys));
+};
+
+export const actionFetchToSaveExpenses = (payload) => async (dispatch) => {
+  const currencys = await fetchCurrencies();
+  dispatch(actionSaveExpense({ ...payload, exchangeRates: currencys }));
 };

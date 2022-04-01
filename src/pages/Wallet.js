@@ -3,12 +3,12 @@ import { connect } from 'react-redux';
 import { func } from 'prop-types';
 import Header from '../components/Header';
 import Content from '../components/Content';
-import { actionFetchToSaveCurrencys } from '../actions';
+import { actionFetchToSaveCurrencies } from '../actions';
 
 class Wallet extends Component {
   componentDidMount() {
     const { dispatch } = this.props;
-    dispatch(actionFetchToSaveCurrencys());
+    dispatch(actionFetchToSaveCurrencies());
   }
 
   render() {

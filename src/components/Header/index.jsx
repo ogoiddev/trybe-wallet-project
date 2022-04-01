@@ -6,13 +6,19 @@ import HeaderContainer from './style';
 
 class Header extends Component {
   render() {
-    const { email } = this.props;
-    const inicial = 0;
+    const { email, totalR$ } = this.props;
     return (
       <HeaderContainer>
         <span data-testid="email-field">{email}</span>
-        <span data-testid="total-field">{inicial}</span>
-        <span data-testid="header-currency-field">BRL</span>
+
+        <span
+          data-testid="header-currency-field"
+        >
+          <span data-testid="total-field">
+            {totalR$.toFixed(2)}
+          </span>
+          BRL
+        </span>
         <FormExpense />
 
       </HeaderContainer>
@@ -22,10 +28,12 @@ class Header extends Component {
 
 Header.propTypes = {
   email: PropTypes.string.isRequired,
+  totalR$: PropTypes.number.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   email: state.user.email,
+  totalR$: state.wallet.totalR$,
 });
 
 export default connect(mapStateToProps)(Header);

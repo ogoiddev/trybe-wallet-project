@@ -4,6 +4,7 @@ import { SAVE_CURRENCY, SAVE_EXPENSE } from '../actions';
 const INITIAL_STATE = {
   currencies: [],
   expenses: [],
+  totalR$: 0,
 };
 
 const wallet = (state = INITIAL_STATE, action) => {
@@ -17,8 +18,18 @@ const wallet = (state = INITIAL_STATE, action) => {
       currencies: keys.filter((code) => code !== 'USDT'),
     };
   }
-  case SAVE_EXPENSE:
-    return { ...state, expenses: [...action.payload] };
+
+  case SAVE_EXPENSE: {
+    const stateWithId = state.expenses.map((expense, i) => ({ ...expense, id: i }));
+    const arrayToSet = [...stateWithId, { ...action.payload, id: stateWithId.length }];
+
+    return {
+      ...state,
+      expenses: arrayToSet,
+      totalR$: arrayToSet.reduce((acc, { value, currency, exchangeRates }) => (acc + value
+      * exchangeRates[currency].ask), 0),
+    };
+  }
   default: return state;
   }
 };
