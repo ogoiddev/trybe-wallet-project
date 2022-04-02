@@ -7,6 +7,7 @@ import HeaderContainer from './style';
 class Header extends Component {
   render() {
     const { email, totalR$ } = this.props;
+    const total = totalR$ && totalR$.toFixed(2);
     return (
       <HeaderContainer>
         <span data-testid="email-field">{email}</span>
@@ -15,7 +16,7 @@ class Header extends Component {
           data-testid="header-currency-field"
         >
           <span data-testid="total-field">
-            {totalR$.toFixed(2)}
+            {total || 0}
           </span>
           BRL
         </span>
@@ -26,10 +27,14 @@ class Header extends Component {
   }
 }
 
-Header.propTypes = {
-  email: PropTypes.string.isRequired,
-  totalR$: PropTypes.number.isRequired,
+Header.defaultProps = {
+  totalR$: undefined,
 };
+
+Header.propTypes = {
+  email: PropTypes.string,
+  totalR$: PropTypes.number,
+}.isRequired;
 
 const mapStateToProps = (state) => ({
   email: state.user.email,

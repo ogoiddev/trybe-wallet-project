@@ -27,7 +27,8 @@ const wallet = (state = INITIAL_STATE, action) => {
       ...state,
       expenses: arrayToSet,
       totalR$: arrayToSet.reduce((acc, { value, currency, exchangeRates }) => (acc + value
-      * exchangeRates[currency].ask), 0),
+        * exchangeRates[currency].ask), 0)
+      || '',
     };
   }
   default: return state;
