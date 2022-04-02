@@ -15,9 +15,8 @@ const wallet = (state = INITIAL_STATE, action) => {
     const keys = Object.keys(action.payload);
     return {
       ...state,
-      currenciesInfo: keys.map((code) => code !== 'USDT' && action.payload[code])
-        .filter((each) => each),
-      currencies: keys.filter((code) => code !== 'USDT'),
+      currenciesInfo: action.payload,
+      currencies: keys,
     };
   }
 

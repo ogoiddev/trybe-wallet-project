@@ -22,10 +22,12 @@ const actionSaveExpense = (payload) => ({
 
 export const actionFetchToSaveCurrencies = () => async (dispatch) => {
   const currencys = await fetchCurrencies();
+  delete currencys.USDT;
   dispatch(actionSaveCurrency(currencys));
 };
 
 export const actionFetchToSaveExpenses = (payload) => async (dispatch) => {
   const currencys = await fetchCurrencies();
+  delete currencys.USDT;
   dispatch(actionSaveExpense({ ...payload, exchangeRates: currencys }));
 };

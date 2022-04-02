@@ -9,7 +9,7 @@ export const Container = styled.div`
 `;
 
 export const Form = styled.form`
-  height: ${({ name }) => (name === 'loginForm' ? '200px' : '150px')};
+  height: ${({ name }) => (name === 'loginForm' ? '200px' : '50px')};
   width: ${({ name }) => (name === 'loginForm' ? '400px' : '100%')};
   display: flex;
   justify-content: space-evenly;

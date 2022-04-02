@@ -23,18 +23,16 @@ const TableOfExpenses = () => {
   }),
   [expenses]);
 
-  const tableInstance = useTable({
-    columns,
-    data,
-  });
-
   const {
     getTableProps,
     getTableBodyProps,
     headerGroups,
     rows,
     prepareRow,
-  } = tableInstance;
+  } = useTable({
+    columns,
+    data,
+  });
 
   return (
     <table { ...getTableProps() }>
