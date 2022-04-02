@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { func } from 'prop-types';
 import Header from '../components/Header';
-import Content from '../components/Content';
+import TableOfExpenses from '../components/TableOfExpenses';
 import { actionFetchToSaveCurrencies } from '../actions';
+import * as S from '../components_Styled/ContainersPage';
 
 class Wallet extends Component {
   componentDidMount() {
@@ -13,10 +14,10 @@ class Wallet extends Component {
 
   render() {
     return (
-      <div>
+      <S.ContainerWallet>
         <Header />
-        <Content />
-      </div>
+        <TableOfExpenses />
+      </S.ContainerWallet>
     );
   }
 }

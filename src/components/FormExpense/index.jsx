@@ -9,14 +9,14 @@ class FormExpense extends Component {
     super(props);
     this.state = {
       expense: {
-        value: 0,
+        value: '',
       },
     };
   }
 
   handleClickToSaveExpense = async (e) => {
     e.preventDefault();
-    this.setState({ expense: { value: 0 } });
+    this.setState({ expense: { value: '' } });
     const { dispatch } = this.props;
     const { expense } = this.state;
     dispatch(actionFetchToSaveExpenses(expense));
@@ -31,7 +31,7 @@ class FormExpense extends Component {
     const { currenciesCode } = this.props;
     const { expense: { value } } = this.state;
     return (
-      <S.Form>
+      <S.Form name="expenseForm">
         <S.Input
           value={ value }
           name="value"

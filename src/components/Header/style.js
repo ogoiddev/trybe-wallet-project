@@ -1,9 +1,12 @@
 import styled from 'styled-components';
 
-const HeaderContainer = styled.div`
+export const Container = styled.div`
   width: 100%;
   height: 200px;
-  background-color: #0fa;
+  box-sizing: border-box;
 `;
 
-export default HeaderContainer;
+export const HeaderContainer = styled.div`
+  background-color: #0fa;
+  
+`;

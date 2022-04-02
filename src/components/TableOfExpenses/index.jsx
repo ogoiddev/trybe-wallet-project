@@ -2,12 +2,26 @@ import React, { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { useTable } from 'react-table';
 import COLUMNS from './columns';
+import './table.css';
 
+// https://www.youtube.com/watch?v=hson9BXU9F8 (ESTE COMPONENT É FRUTO DE UM DESAFIO EM APRENDER NOVAS FERRAMENTAS - AQUI ESTOU APRENDENDO COM REACT-TABLE E IMPLEMENTANDO COM A INSTRUÇÃO DO VIDEO)
 const TableOfExpenses = () => {
-  const selectorTo = useSelector((state) => state.wallet.expenses);
+  const { expenses } = useSelector((state) => state.wallet);
 
   const columns = useMemo(() => COLUMNS, []);
-  const data = useMemo(() => selectorTo, [selectorTo]);
+  const data = useMemo(() => expenses.map((each) => {
+    const exchanges = each.exchangeRates[each.currency];
+    return {
+      ...each,
+      name: exchanges.name?.split('/')[0],
+      ask: Number(exchanges.ask).toFixed(2),
+      value: Number(each.value).toFixed(2),
+      convertedValue: (Number(each.value) * exchanges.ask)
+        .toFixed(2),
+      convertedFrom: 'Real',
+    };
+  }),
+  [expenses]);
 
   const tableInstance = useTable({
     columns,

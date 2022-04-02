@@ -25,11 +25,11 @@ const COLUMNS = [
   },
   {
     Header: 'Valor convertido',
-    accessor: 'real',
+    accessor: 'convertedValue',
   },
   {
     Header: 'Moeda de conversão',
-    accessor: 'currency',
+    accessor: 'convertedFrom',
   },
   {
     Header: 'Editar/Excluir',

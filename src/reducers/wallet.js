@@ -2,8 +2,10 @@
 import { SAVE_CURRENCY, SAVE_EXPENSE } from '../actions';
 
 const INITIAL_STATE = {
+  currenciesInfo: [],
   currencies: [],
   expenses: [],
+  expensesToShow: [],
   totalR$: 0,
 };
 
@@ -20,17 +22,19 @@ const wallet = (state = INITIAL_STATE, action) => {
   }
 
   case SAVE_EXPENSE: {
-    const stateWithId = state.expenses.map((expense, i) => ({ ...expense, id: i }));
-    const arrayToSet = [...stateWithId, { ...action.payload, id: stateWithId.length }];
+    const statePrevWithId = state.expenses.map((expense, i) => ({ ...expense, id: i }));
+    const newArrayToSet = [...statePrevWithId,
+      { ...action.payload, id: statePrevWithId.length }];
 
     return {
       ...state,
-      expenses: arrayToSet,
-      totalR$: arrayToSet.reduce((acc, { value, currency, exchangeRates }) => (acc + value
-        * exchangeRates[currency].ask), 0)
-      || '',
+      expenses: newArrayToSet,
+      totalR$: newArrayToSet.reduce((acc, { value, currency, exchangeRates }) => (
+        acc + value * exchangeRates[currency].ask), 0)
+        || '',
     };
   }
+
   default: return state;
   }
 };
