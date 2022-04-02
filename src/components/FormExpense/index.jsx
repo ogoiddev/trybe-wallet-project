@@ -31,60 +31,74 @@ class FormExpense extends Component {
     const { currenciesCode } = this.props;
     const { expense: { value } } = this.state;
     return (
-      <S.Form name="expenseForm">
-        <S.Input
-          value={ value }
-          name="value"
-          onChange={ this.handleChangeExpense }
-          data-testid="value-input"
-          type="number"
-          placeholder="R$"
-        />
-        <S.TextArea
-          name="description"
-          onChange={ this.handleChangeExpense }
-          data-testid="description-input"
-        />
-        <S.Label>
-          Moeda
-          <S.Select
-            required
-            name="currency"
-            onChange={ this.handleChangeExpense }
+      <S.Container name="expenseContainer">
+        <S.Form name="expenseForm">
+          <S.Label>
+            Valor $?
+            <S.Input
+              value={ value }
+              name="value"
+              onChange={ this.handleChangeExpense }
+              data-testid="value-input"
+              type="number"
+              placeholder="Valor total"
+            />
+          </S.Label>
+          <S.Label>
+            Despesa com:
+            <S.TextArea
+              name="description"
+              onChange={ this.handleChangeExpense }
+              data-testid="description-input"
+            />
+          </S.Label>
+          <S.Label>
+            Custo referência
+            <S.Select
+              name="tag"
+              onChange={ this.handleChangeExpense }
+              data-testid="tag-input"
+            >
+              <option value="Alimentação">Alimentação</option>
+              <option value="Lazer">Lazer</option>
+              <option value="Trabalho">Trabalho</option>
+              <option value="Transporte">Transporte</option>
+              <option value="Saúde">Saúde</option>
+            </S.Select>
+          </S.Label>
+          <S.Label>
+            Moeda
+            <S.Select
+              required
+              name="currency"
+              onChange={ this.handleChangeExpense }
+            >
+              {currenciesCode.map((each) => (
+                <option key={ each }>{each}</option>
+              ))}
+            </S.Select>
+          </S.Label>
+          <S.Label>
+            Pago com:
+            <S.Select
+              name="method"
+              onChange={ this.handleChangeExpense }
+              data-testid="method-input"
+            >
+              <option value="Dinheiro">Dinheiro</option>
+              <option value="Cartão de crédito">Cartão de crédito</option>
+              <option value="Cartão de débito">Cartão de débito</option>
+            </S.Select>
+          </S.Label>
+          <S.Button
+            onClick={ this.handleClickToSaveExpense }
+            type="submit"
           >
-            {currenciesCode.map((each) => (
-              <option key={ each }>{each}</option>
-            ))}
-          </S.Select>
-        </S.Label>
-        <S.Select
-          name="method"
-          onChange={ this.handleChangeExpense }
-          data-testid="method-input"
-        >
-          <option value="Dinheiro">Dinheiro</option>
-          <option value="Cartão de crédito">Cartão de crédito</option>
-          <option value="Cartão de débito">Cartão de débito</option>
-        </S.Select>
-        <S.Select
-          name="tag"
-          onChange={ this.handleChangeExpense }
-          data-testid="tag-input"
-        >
-          <option value="Alimentação">Alimentação</option>
-          <option value="Lazer">Lazer</option>
-          <option value="Trabalho">Trabalho</option>
-          <option value="Transporte">Transporte</option>
-          <option value="Saúde">Saúde</option>
-        </S.Select>
-        <S.Button
-          onClick={ this.handleClickToSaveExpense }
-          type="submit"
-        >
-          Adicionar despesa
+            Adicionar despesa
 
-        </S.Button>
-      </S.Form>
+          </S.Button>
+        </S.Form>
+      </S.Container>
     );
   }
 }

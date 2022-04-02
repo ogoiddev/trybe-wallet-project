@@ -1,5 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Bellota:ital,wght@1,300;1,400;1,700&family=Fugaz+One&family=Harmattan:wght@400;700&family=Inknut+Antiqua:wght@300;700&family=Inter:wght@100;300;400;500;800&family=Montserrat:ital,wght@0,100;0,500;0,900;1,400;1,900&family=Shizuru&family=Titan+One&display=swap');
+
+/*  OPTIONS FONT'S:
+font-family: 'Bellota', cursive;
+font-family: 'Fugaz One', cursive;
+font-family: 'Harmattan', sans-serif;
+font-family: 'Inknut Antiqua', serif;
+font-family: 'Inter', sans-serif;
+font-family: 'Montserrat', sans-serif;
+font-family: 'Shizuru', cursive;
+font-family: 'Titan One', cursive; */
 body, html {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family: Bellota, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;

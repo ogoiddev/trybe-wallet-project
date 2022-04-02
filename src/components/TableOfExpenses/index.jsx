@@ -40,7 +40,14 @@ const TableOfExpenses = () => {
         {headerGroups.map((headerGroup, a) => (
           <tr key={ a } { ...headerGroup.getHeaderGroupProps() }>
             {headerGroup.headers.map((column, b) => (
-              <th key={ b } { ...column.getHeaderProps() }>{column.render('Header')}</th>
+              <th
+                className="divTilte"
+                key={ b }
+                { ...column.getHeaderProps() }
+              >
+                {column.render('Header')}
+
+              </th>
             ))}
           </tr>
         ))}

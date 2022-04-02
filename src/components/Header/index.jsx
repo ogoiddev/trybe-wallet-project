@@ -12,17 +12,14 @@ class Header extends Component {
       <S.Container>
         <S.HeaderContainer>
           <span data-testid="email-field">{email}</span>
-
-          <span
-            data-testid="header-currency-field"
-          >
+          <span data-testid="header-currency-field">
             <span data-testid="total-field">
               {total || 0}
             </span>
             BRL
           </span>
-          <FormExpense />
         </S.HeaderContainer>
+        <FormExpense />
 
       </S.Container>
     );
