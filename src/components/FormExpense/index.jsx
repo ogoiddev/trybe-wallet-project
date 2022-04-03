@@ -93,6 +93,7 @@ class FormExpense extends Component {
           <S.Button
             onClick={ this.handleClickToSaveExpense }
             type="submit"
+
           >
             Adicionar despesa
 

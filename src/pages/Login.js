@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import * as S from '../components_Styled/FormElements';
-import { actionSaveLogin } from '../actions';
+import { actionTo, SAVE_LOGIN } from '../actions';
 
 class Login extends React.Component {
   constructor(props) {
@@ -38,7 +38,7 @@ class Login extends React.Component {
     e.preventDefault();
     const { userAsk: { email } } = this.state;
     const { history, dispatch } = this.props;
-    dispatch(actionSaveLogin(email));
+    dispatch(actionTo(SAVE_LOGIN, email));
     history.push('/carteira');
   }
 
