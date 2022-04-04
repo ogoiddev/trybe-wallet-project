@@ -7,10 +7,13 @@ import { actionFetchToSaveExpenses } from '../../actions';
 const INITIAL_STATE = {
   value: '',
   description: '',
-  tag: 'Selecionar',
+  tag: 'Selecione',
   currency: '',
   method: '',
 };
+
+const TAG_LIST = ['Selecione', 'Alimentação', 'Lazer', 'Trabalho', 'Transporte', 'Saúde'];
+const METHOD_LIST = ['Selecione', 'Dinheiro', 'Cartão de crédito', 'Cartão de débito'];
 
 class FormExpense extends Component {
   constructor(props) {
@@ -76,12 +79,8 @@ class FormExpense extends Component {
               onChange={ this.handleChangeExpense }
               data-testid="tag-input"
             >
-              <option value="Alimentação">Selecionar</option>
-              <option value="Alimentação">Alimentação</option>
-              <option value="Lazer">Lazer</option>
-              <option value="Trabalho">Trabalho</option>
-              <option value="Transporte">Transporte</option>
-              <option value="Saúde">Saúde</option>
+              {TAG_LIST
+                .map((each) => <option key={ each } value={ each }>{each}</option>)}
             </S.Select>
           </S.Label>
           <S.Label>
@@ -103,10 +102,8 @@ class FormExpense extends Component {
               onChange={ this.handleChangeExpense }
               data-testid="method-input"
             >
-              <option value="Alimentação">Selecionar</option>
-              <option value="Dinheiro">Dinheiro</option>
-              <option value="Cartão de crédito">Cartão de crédito</option>
-              <option value="Cartão de débito">Cartão de débito</option>
+              {METHOD_LIST
+                .map((each) => <option key={ each } value={ each }>{each}</option>)}
             </S.Select>
           </S.Label>
           <S.Button

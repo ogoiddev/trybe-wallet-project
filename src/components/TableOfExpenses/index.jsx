@@ -5,7 +5,6 @@ import COLUMNS from './columns';
 import './table.css';
 import Buttons from './Buttons';
 
-// https://www.youtube.com/watch?v=hson9BXU9F8 (ESTE COMPONENT É FRUTO DE UM DESAFIO EM APRENDER NOVAS FERRAMENTAS - AQUI ESTOU APRENDENDO COM A BIBLIOTECA REACT-TABLE E IMPLEMENTANDO COM APOIO INSTRUÇÃO DO VIDEO. TAMBEM ESTAMOS PRATICANDO O USO DE COMPONENTES FUNCIONAIS)
 const TableOfExpenses = () => {
   const { expenses } = useSelector((state) => state.wallet);
 

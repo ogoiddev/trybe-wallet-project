@@ -15,10 +15,11 @@ class Header extends Component {
         <S.HeaderContainer>
           <span data-testid="email-field">{email}</span>
           <span data-testid="header-currency-field">
+            <span>R$ </span>
             <span data-testid="total-field">
-              {total.toFixed(2)}
+              {new Intl.NumberFormat().format(total.toFixed(2))}
             </span>
-            BRL
+            {' - (BRL)'}
           </span>
         </S.HeaderContainer>
         <FormExpense />
