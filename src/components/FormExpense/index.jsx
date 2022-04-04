@@ -22,8 +22,6 @@ class FormExpense extends Component {
   }
 
   componentDidMount() {
-    console.log('i');
-
     this.setState(({ expense }) => ({
       isDisabled: expense.value.length <= 1,
     }));
