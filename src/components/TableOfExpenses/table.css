@@ -4,28 +4,24 @@ table {
   flex-direction: column;
   height: 54px;
   justify-content: space-between;
-  width: 95%;
   margin: 0 auto;
+  width: 95%;
 }
 
 table td , table th , .th {
   border: 1px solid #ddd;
-  padding: 8px;
   overflow: hidden;
+  padding: 8px;
 }
 
-table tr:nth-child( even ) { background-color: #eafada; }
-
-table tr:hover { background-color: #d4ffdf; }
+thead tr , .tr , tbody tr {
+  display: flex;
+}
 
 table th , .th {
   background-color: #04aa6d;
   color: white;
   text-align: center;
-}
-
-thead tr , .tr , tbody tr {
-  display: flex;
 }
 
 .divTilte {
@@ -47,3 +43,7 @@ table tbody tr td {
 table tbody tr td:last-of-type {
   justify-content: space-evenly;
 }
+  
+table tr:nth-child( even ) { background-color: #eafada; }
+  
+table tr:hover { background-color: #d4ffdf; }
