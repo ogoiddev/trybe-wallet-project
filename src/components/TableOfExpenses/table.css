@@ -8,7 +8,7 @@ table {
   margin: 0 auto;
 }
 
-table td , table th {
+table td , table th , .th {
   border: 1px solid #ddd;
   padding: 8px;
   overflow: hidden;
@@ -18,13 +18,13 @@ table tr:nth-child( even ) { background-color: #eafada; }
 
 table tr:hover { background-color: #d4ffdf; }
 
-table th {
+table th , .th {
   background-color: #04aa6d;
   color: white;
   text-align: center;
 }
 
-thead tr , tbody tr {
+thead tr , .tr , tbody tr {
   display: flex;
 }
 

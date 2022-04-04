@@ -38,17 +38,21 @@ const TableOfExpenses = () => {
     <table>
       <thead>
         {headerGroups.map((headerGroup) => (
-          <tr key={ headerGroup.id } { ...headerGroup.getHeaderGroupProps() }>
+          <span
+            className="tr"
+            key={ headerGroup.id }
+            { ...headerGroup.getHeaderGroupProps() }
+          >
             {headerGroup.headers.map((column) => (
-              <th
-                className="divTilte"
+              <span
+                className="divTilte th"
                 key={ columns.Header }
                 { ...column.getHeaderProps() }
               >
                 {column.render('Header')}
-              </th>
+              </span>
             ))}
-          </tr>
+          </span>
         ))}
       </thead>
 
