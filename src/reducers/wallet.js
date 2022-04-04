@@ -33,6 +33,7 @@ const wallet = (state = INITIAL_STATE, action) => {
       expenses: state.expenses.filter(({ id }) => id !== action.payload),
     };
   }
+
   default: return state;
   }
 };

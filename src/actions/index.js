@@ -5,6 +5,7 @@ export const SAVE_LOGIN = 'SAVE_LOGIN';
 export const SAVE_CURRENCY = 'SAVE_CURRENCY';
 export const SAVE_EXPENSE = 'SAVE_EXPENSE';
 export const DELET_EXPENSE = 'DELET_EXPENSE';
+export const EDIT_EXPENSE = 'EDIT_EXPENSE';
 
 export const actionTo = (type, payload) => ({
   type,

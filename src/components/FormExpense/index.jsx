@@ -4,19 +4,34 @@ import { arrayOf, string, func } from 'prop-types';
 import * as S from '../../components_Styled/FormElements';
 import { actionFetchToSaveExpenses } from '../../actions';
 
+const INITIAL_STATE = {
+  value: '',
+  description: '',
+  tag: 'Selecionar',
+  currency: '',
+  method: '',
+};
+
 class FormExpense extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      expense: {
-        value: '',
-      },
+      expense: { ...INITIAL_STATE },
+      isDisabled: true,
     };
+  }
+
+  componentDidMount() {
+    console.log('i');
+
+    this.setState(({ expense }) => ({
+      isDisabled: expense.value.length <= 1,
+    }));
   }
 
   handleClickToSaveExpense = async (e) => {
     e.preventDefault();
-    this.setState({ expense: { value: '' } });
+    this.setState({ expense: { ...INITIAL_STATE } });
     const { dispatch } = this.props;
     const { expense } = this.state;
     dispatch(actionFetchToSaveExpenses(expense));
@@ -24,12 +39,15 @@ class FormExpense extends Component {
 
   handleChangeExpense = ({ target: { name, value } }) => {
     this.setState(({ expense }) => ({
-      expense: { ...expense, [name]: value } }));
+      expense: { ...expense, [name]: value },
+      isDisabled: expense.value.length <= 1 && expense.description.length <= 1,
+    }
+    ));
   }
 
   render() {
     const { currenciesCode } = this.props;
-    const { expense: { value } } = this.state;
+    const { expense: { value, description }, isDisabled } = this.state;
     return (
       <S.Container name="expenseContainer">
         <S.Form name="expenseForm">
@@ -47,6 +65,7 @@ class FormExpense extends Component {
           <S.Label>
             Despesa com:
             <S.TextArea
+              value={ description }
               name="description"
               onChange={ this.handleChangeExpense }
               data-testid="description-input"
@@ -59,6 +78,7 @@ class FormExpense extends Component {
               onChange={ this.handleChangeExpense }
               data-testid="tag-input"
             >
+              <option value="Alimentação">Selecionar</option>
               <option value="Alimentação">Alimentação</option>
               <option value="Lazer">Lazer</option>
               <option value="Trabalho">Trabalho</option>
@@ -85,12 +105,14 @@ class FormExpense extends Component {
               onChange={ this.handleChangeExpense }
               data-testid="method-input"
             >
+              <option value="Alimentação">Selecionar</option>
               <option value="Dinheiro">Dinheiro</option>
               <option value="Cartão de crédito">Cartão de crédito</option>
               <option value="Cartão de débito">Cartão de débito</option>
             </S.Select>
           </S.Label>
           <S.Button
+            disabled={ isDisabled }
             onClick={ this.handleClickToSaveExpense }
             type="submit"
 
@@ -111,7 +133,6 @@ FormExpense.propTypes = {
 
 const mapStateToProps = (state) => ({
   currenciesCode: state.wallet.currencies,
-  currenciesInfo: state.wallet.currenciesInfo,
 });
 
 export default connect(mapStateToProps)(FormExpense);

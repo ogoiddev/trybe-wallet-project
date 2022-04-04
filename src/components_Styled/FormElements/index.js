@@ -35,7 +35,7 @@ export const Label = styled.label`
   `;
 
 export const Input = styled.input`
-  border: 3px solid #FFEA81;
+  border: 2px solid #FFEA81;
   padding: 5px;
   width: 100%;
   min-height: 43px;
@@ -48,7 +48,7 @@ export const Input = styled.input`
 `;
 
 export const TextArea = styled.textarea`
-  border: 3px solid #FFEA81;
+  border: 2px solid #FFEA81;
   border-radius: 3px;
   min-height: 43px;
   padding: 5px;
@@ -67,9 +67,10 @@ export const Button = styled.button`
   width: ${({ name }) => (name === 'loginBtn' ? '100%' : '200px')};
   padding: ${({ name }) => (name === 'loginBtn' ? '' : '19px')};
   margin-left: ${({ name }) => (name === 'loginBtn' ? '' : '13px')};
+  transition: 0.5s;
 
   &:hover {
-    font-size: ${({ name }) => (name === 'loginBtn' ? '20px' : '')};
+    font-size: ${({ name }) => (name === 'loginBtn' ? '150%' : '')};
     color: ${({ name }) => (name === 'loginBtn' ? '' : 'yellow')};
     transition: 0.5s;
 
