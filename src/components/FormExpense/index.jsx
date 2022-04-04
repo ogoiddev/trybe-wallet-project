@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { arrayOf, string, func } from 'prop-types';
 import * as S from '../../components_Styled/FormElements';
-import { actionFetchToSaveExpenses } from '../../actions';
+import {
+  actionFetchToSaveExpenses, actionTo, SAVE_EXPENSE, EDIT_EXPENSE,
+} from '../../actions';
 
 const INITIAL_STATE = {
   value: '',
@@ -21,6 +23,7 @@ class FormExpense extends Component {
     this.state = {
       expense: { ...INITIAL_STATE },
       isDisabled: true,
+      action: { action: SAVE_EXPENSE, func: actionFetchToSaveExpenses },
     };
   }
 
@@ -30,12 +33,29 @@ class FormExpense extends Component {
     }));
   }
 
+  componentDidUpdate(prevProps) {
+    const { isEdit } = this.props;
+    if (isEdit && !prevProps.isEdit) {
+      this.handleEditToSave();
+    }
+  }
+
   handleClickToSaveExpense = async (e) => {
     e.preventDefault();
-    this.setState({ expense: { ...INITIAL_STATE } });
+    this.setState({
+      expense: { ...INITIAL_STATE },
+      action: { action: SAVE_EXPENSE, func: actionFetchToSaveExpenses },
+    });
     const { dispatch } = this.props;
-    const { expense } = this.state;
-    dispatch(actionFetchToSaveExpenses(expense));
+    const { expense, action } = this.state;
+    dispatch(action.func(action.action, expense));
+  }
+
+  handleEditToSave = () => {
+    const { expenseToEdit } = this.props;
+    this.setState({ expense: { ...expenseToEdit },
+      action: { action: EDIT_EXPENSE, func: actionTo,
+      } });
   }
 
   handleChangeExpense = ({ target: { name, value } }) => {
@@ -47,8 +67,10 @@ class FormExpense extends Component {
   }
 
   render() {
-    const { currenciesCode } = this.props;
-    const { expense: { value, description }, isDisabled } = this.state;
+    const { currenciesCode, isEdit } = this.props;
+    const { expense: { value, description, tag, currency, method },
+      isDisabled } = this.state;
+
     return (
       <S.Container name="expenseContainer">
         <S.Form name="expenseForm">
@@ -75,6 +97,7 @@ class FormExpense extends Component {
           <S.Label>
             Custo referência
             <S.Select
+              value={ tag }
               name="tag"
               onChange={ this.handleChangeExpense }
               data-testid="tag-input"
@@ -86,9 +109,11 @@ class FormExpense extends Component {
           <S.Label>
             Moeda
             <S.Select
+              value={ currency }
               required
               name="currency"
               onChange={ this.handleChangeExpense }
+              data-testid="currency-input"
             >
               {currenciesCode.map((each) => (
                 <option key={ each }>{each}</option>
@@ -98,6 +123,7 @@ class FormExpense extends Component {
           <S.Label>
             Pago com:
             <S.Select
+              value={ method }
               name="method"
               onChange={ this.handleChangeExpense }
               data-testid="method-input"
@@ -107,12 +133,12 @@ class FormExpense extends Component {
             </S.Select>
           </S.Label>
           <S.Button
+            name={ isEdit === true ? 'Editar despesa' : 'Adicionar despesa' }
             disabled={ isDisabled }
             onClick={ this.handleClickToSaveExpense }
             type="submit"
-
           >
-            Adicionar despesa
+            {isEdit ? 'Editar despesa' : 'Adicionar despesa'}
 
           </S.Button>
         </S.Form>
@@ -128,6 +154,8 @@ FormExpense.propTypes = {
 
 const mapStateToProps = (state) => ({
   currenciesCode: state.wallet.currencies,
+  isEdit: state.wallet.isEditStatus,
+  expenseToEdit: state.wallet.expenseToEdit,
 });
 
 export default connect(mapStateToProps)(FormExpense);

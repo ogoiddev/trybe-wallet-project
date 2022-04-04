@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { number } from 'prop-types';
 import * as S from '../../components_Styled/FormElements';
-import { actionTo, DELET_EXPENSE, EDIT_EXPENSE } from '../../actions';
+import { actionTo, DELET_EXPENSE, EDIT_STATUS } from '../../actions';
 
 export default function Buttons({ id }) {
   const dispatch = useDispatch();
@@ -10,7 +10,7 @@ export default function Buttons({ id }) {
   return (
     <>
       <S.EditBtn
-        onClick={ () => dispatch(actionTo(EDIT_EXPENSE, id)) }
+        onClick={ () => dispatch(actionTo(EDIT_STATUS, id)) }
         data-testid="edit-btn"
       />
       <S.DeletBtn

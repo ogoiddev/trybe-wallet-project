@@ -65,7 +65,7 @@ export const Button = styled.button`
   color: ${({ disabled }) => (disabled ? '#ff101f' : '#f9f9f9')};
   font-weight: 800; 
   width: ${({ name }) => (name === 'loginBtn' ? '100%' : '200px')};
-  padding: ${({ name }) => (name === 'loginBtn' ? '' : '19px')};
+  padding: ${({ name }) => (name === 'loginBtn' ? '' : '9px')};
   margin-left: ${({ name }) => (name === 'loginBtn' ? '' : '13px')};
   transition: 0.5s;
 

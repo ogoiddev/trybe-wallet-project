@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import FormExpense from '../FormExpense';
 import * as S from './style';
+import logo from '../../images/logo_wallet.png';
 
 class Header extends Component {
   render() {
@@ -13,6 +14,14 @@ class Header extends Component {
     return (
       <S.Container>
         <S.HeaderContainer>
+          <span>
+            <img
+              className="logo"
+              src={ logo }
+              alt="Logo da e-wallet"
+            />
+
+          </span>
           <span data-testid="email-field">{email}</span>
           <span data-testid="header-currency-field">
             <span>R$ </span>

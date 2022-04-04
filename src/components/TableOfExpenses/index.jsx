@@ -37,6 +37,7 @@ const TableOfExpenses = () => {
     <table>
       <thead>
         {headerGroups.map((headerGroup) => (
+
           <span
             className="tr"
             key={ headerGroup.id }
@@ -56,10 +57,10 @@ const TableOfExpenses = () => {
       </thead>
 
       <tbody>
-        {rows.map((row, i1) => {
+        {rows.map((row) => {
           prepareRow(row);
           return (
-            <tr key={ row + i1 } { ...row.getRowProps() }>
+            <tr key={ row } { ...row.getRowProps() }>
               {
                 row.cells.map((cell, i2) => (
                   <td

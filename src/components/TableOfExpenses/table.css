@@ -44,6 +44,6 @@ table tbody tr td:last-of-type {
   justify-content: space-evenly;
 }
 
-table tr:nth-child( even ) { background-color: #eafada; }
+table tr:nth-child( even ) { background-color: #fbfce1; }
 
 table tr:hover { background-color: #d4ffdf; }

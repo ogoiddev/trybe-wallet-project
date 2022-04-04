@@ -9,17 +9,22 @@ export const Container = styled.div`
   `;
 
 export const HeaderContainer = styled.div`
-text-align: center;
+  text-align: center;
   background-color: #183a37;
   height: 50%;
   display: flex;
   justify-content: space-around;
   
   span{
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-weight: 800;
     color: #f9f9f9;
-    height: 50%;
+    height: 100%;
+    line-height: 100px;
     align-self: center;
+
+  .logo {
+    width: 100px;
+  }  
   }
 `;
