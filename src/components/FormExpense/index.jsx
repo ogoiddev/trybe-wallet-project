@@ -10,7 +10,7 @@ const INITIAL_STATE = {
   value: '',
   description: '',
   tag: 'Selecione',
-  currency: '',
+  currency: '$$',
   method: '',
 };
 
@@ -45,6 +45,7 @@ class FormExpense extends Component {
     this.setState({
       expense: { ...INITIAL_STATE },
       action: { action: SAVE_EXPENSE, func: actionFetchToSaveExpenses },
+      isDisabled: true,
     });
     const { dispatch } = this.props;
     const { expense, action } = this.state;
@@ -61,7 +62,10 @@ class FormExpense extends Component {
   handleChangeExpense = ({ target: { name, value } }) => {
     this.setState(({ expense }) => ({
       expense: { ...expense, [name]: value },
-      isDisabled: expense.value.length <= 1 && expense.description.length <= 1,
+      isDisabled: !(expense.value.length >= 1
+        && expense.description.length >= 1
+        && expense.currency.length >= 1
+      ),
     }
     ));
   }
@@ -115,6 +119,7 @@ class FormExpense extends Component {
               onChange={ this.handleChangeExpense }
               data-testid="currency-input"
             >
+              {/* <option value="$$">$$</option> */}
               {currenciesCode.map((each) => (
                 <option key={ each }>{each}</option>
               ))}

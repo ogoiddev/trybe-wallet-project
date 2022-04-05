@@ -1,12 +1,14 @@
 import React, { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { useTable } from 'react-table';
+import { useId } from 'react-id-generator';
 import COLUMNS from './columns';
 import './table.css';
 import Buttons from './Buttons';
 
 const TableOfExpenses = () => {
   const { expenses } = useSelector((state) => state.wallet);
+  const ids = useId(expenses.length + 1);
 
   const columns = useMemo(() => COLUMNS, []);
   const data = useMemo(() => expenses.map((each) => {
@@ -36,17 +38,17 @@ const TableOfExpenses = () => {
   return (
     <table>
       <thead>
-        {headerGroups.map((headerGroup) => (
+        {headerGroups.map((headerGroup, i) => (
 
           <span
             className="tr"
-            key={ headerGroup.id }
+            key={ i }
             { ...headerGroup.getHeaderGroupProps() }
           >
-            {headerGroup.headers.map((column) => (
+            {headerGroup.headers.map((column, ii) => (
               <span
                 className="divTilte th"
-                key={ columns.Header }
+                key={ ii }
                 { ...column.getHeaderProps() }
               >
                 {column.render('Header')}
@@ -57,15 +59,15 @@ const TableOfExpenses = () => {
       </thead>
 
       <tbody>
-        {rows.map((row) => {
+        {rows.map((row, i) => {
           prepareRow(row);
           return (
-            <tr key={ row } { ...row.getRowProps() }>
+            <tr key={ ids[i] } { ...row.getRowProps() }>
               {
-                row.cells.map((cell, i2) => (
+                row.cells.map((cell, ii) => (
                   <td
                     className="divTilte"
-                    key={ row.cells + i2 }
+                    key={ ii }
                     { ...cell.getCellProps() }
                   >
                     {cell.render('Cell')}

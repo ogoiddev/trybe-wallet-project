@@ -35,12 +35,12 @@ export const Label = styled.label`
   `;
 
 export const Input = styled.input`
-  border: 2px solid #FFEA81;
+  border: 2px solid #04aa6d;
   padding: 5px;
   width: 100%;
   min-height: 43px;
   flex: 1;
-  border-radius: 3px;
+  border-radius: ${({ className }) => (className === 'input-login' ? '' : '3px')};
 
   &:Focus {
     outline: none;
@@ -48,7 +48,7 @@ export const Input = styled.input`
 `;
 
 export const TextArea = styled.textarea`
-  border: 2px solid #FFEA81;
+  border: 2px solid #04aa6d;
   border-radius: 3px;
   min-height: 43px;
   padding: 5px;
