@@ -17,7 +17,7 @@ export const Form = styled.form`
     ? '0 0 15px rgba(0, 0, 0, 0.3)' : '')};
   border-radius: ${({ name }) => (name === 'loginForm' ? '7px' : '')};
   padding: ${({ name }) => (name === 'loginForm' ? '13px' : '')};
-  width: ${({ name }) => (name === 'loginForm' ? '330px' : '95%')};
+  width: ${({ name }) => (name === 'loginForm' ? '330px' : '94%')};
   display: flex;
   align-items: flex-end;
   justify-content: space-evenly;
@@ -51,8 +51,17 @@ export const TextArea = styled.textarea`
   border: 2px solid #04aa6d;
   border-radius: 3px;
   min-height: 43px;
+  resize: horizontal;
+  max-width: 800px;
+  min-width: 350px;
   padding: 5px;
-`;
+
+  &:Focus {
+    width: 600px;
+    transition: 0.1s; 
+  }
+
+  `;
 
 export const Select = styled.select`
 height: 35px;
@@ -91,6 +100,7 @@ export const EditBtn = styled(RiEditLine)`
 
   &:hover {
     filter: brightness(1.3);
+    border: 0.5px solid #111;
   }
 
   @media (max-width: 1024px) {

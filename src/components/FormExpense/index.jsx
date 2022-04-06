@@ -142,6 +142,7 @@ class FormExpense extends Component {
             disabled={ isDisabled }
             onClick={ this.handleClickToSaveExpense }
             type="submit"
+            isEdit={ isEdit }
           >
             {isEdit ? 'Editar despesa' : 'Adicionar despesa'}
 

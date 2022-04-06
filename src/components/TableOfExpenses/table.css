@@ -1,49 +1,66 @@
 table {
-  border-collapse: collapse;
   display: flex;
   flex-direction: column;
-  height: 54px;
-  justify-content: space-between;
-  margin: 0 auto;
-  width: 95%;
+  margin: 200px auto;
+  width: 94%;
 }
 
-table td , table th , .th {
-  border: 1px solid #ddd;
-  overflow: hidden;
-  padding: 8px;
+.head , .body {
+  border-radius: 3px;
+  margin: 5px;
 }
 
-thead tr , .tr , tbody tr {
+.head {
+  height: 50px;
+}
+
+.body {
+  height: 70px;
+}
+
+.head tr , .body tr {
   display: flex;
 }
 
-table th , .th {
-  background-color: #04aa6d;
-  color: white;
+.head tr , .body tr:nth-child( even ) {
+  background: #e4fff5;
+}
+
+.body tr:hover {
+  background-color: #fff34dea;
+  font-size: 1.1rem;
+  font-weight: 800;
+}
+
+.title {
+  background: #04aa6d;
+  border: 0.5px solid #f9f9f9;
+  color: #f9f9f9;
+  display: flex;
+  flex: 1;
+  font-weight: 900;
+  justify-content: center;
+  line-height: 50px;
   text-align: center;
 }
 
-.divTilte {
+.content {
+  align-items: center;
+  border: 1px solid gainsboro;
+  display: flex;
   flex: 1;
+  justify-content: center;
+  text-align: start;
 }
 
-.divTilte:first-of-type {
+.title:first-child {
   flex: 2;
 }
 
-table tbody tr td {
-  align-items: center;
-  display: flex;
-  height: 100%;
-  text-align: left;
-  width: 100%;
+.content:first-child {
+  flex: 2;
 }
 
-table tbody tr td:last-of-type {
+.content:last-child {
   justify-content: space-evenly;
 }
-
-table tr:nth-child( even ) { background-color: #fbfce1; }
-
-table tr:hover { background-color: #d4ffdf; }

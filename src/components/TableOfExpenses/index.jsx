@@ -1,19 +1,28 @@
-import React, { useMemo } from 'react';
 import { useSelector } from 'react-redux';
-import { useTable } from 'react-table';
 import { useId } from 'react-id-generator';
-import COLUMNS from './columns';
 import './table.css';
+import React from 'react';
 import Buttons from './Buttons';
 
 const TableOfExpenses = () => {
   const { expenses } = useSelector((state) => state.wallet);
   const ids = useId(expenses.length + 1);
 
-  const columns = useMemo(() => COLUMNS, []);
-  const data = useMemo(() => expenses.map((each) => {
+  const columns = {
+    description: 'Descrição',
+    tag: 'Tag',
+    method: 'Método de pagamento',
+    value: 'Valor',
+    name: 'Moeda',
+    ask: 'Câmbio utilizado',
+    convertedValue: 'Valor convertido',
+    convertedFrom: 'Moeda de conversão',
+    buttons: 'Editar/Excluir',
+  };
+
+  const data = expenses.map((each) => {
     const exchanges = each.exchangeRates[each.currency];
-    return {
+    return ({
       ...each,
       name: exchanges.name.split('/')[0],
       ask: Number(exchanges.ask).toFixed(2),
@@ -22,61 +31,41 @@ const TableOfExpenses = () => {
         .toFixed(2),
       convertedFrom: 'Real',
       buttons: <Buttons id={ each.id } />,
-    };
-  }),
-  [expenses]);
-
-  const {
-    headerGroups,
-    rows,
-    prepareRow,
-  } = useTable({
-    columns,
-    data,
+    });
   });
 
   return (
     <table>
-      <thead>
-        {headerGroups.map((headerGroup, i) => (
 
-          <span
-            className="tr"
-            key={ i }
-            { ...headerGroup.getHeaderGroupProps() }
-          >
-            {headerGroup.headers.map((column, ii) => (
-              <span
-                className="divTilte th"
-                key={ ii }
-                { ...column.getHeaderProps() }
-              >
-                {column.render('Header')}
-              </span>
-            ))}
-          </span>
-        ))}
+      <thead className="head">
+
+        <tr>
+          {Object.values(columns).map((each) => (
+            <th key={ each } className="title">
+              {each}
+            </th>))}
+        </tr>
+
       </thead>
 
-      <tbody>
-        {rows.map((row, i) => {
-          prepareRow(row);
-          return (
-            <tr key={ ids[i] } { ...row.getRowProps() }>
-              {
-                row.cells.map((cell, ii) => (
-                  <td
-                    className="divTilte"
-                    key={ ii }
-                    { ...cell.getCellProps() }
-                  >
-                    {cell.render('Cell')}
-                  </td>))
-              }
-            </tr>
-          );
-        })}
+      <tbody className="body">
+
+        {data.map((each, ii) => (
+          <tr key={ ids[ii] }>
+            {Object.keys(columns).map((title) => (
+              <td
+                className="content"
+                key={ Math.random() }
+              >
+                {each[title]}
+
+              </td>
+            ))}
+          </tr>
+        ))}
+
       </tbody>
+
     </table>
   );
 };
